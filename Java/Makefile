@@ -10,6 +10,9 @@ all: $(CLASSES)
 	@mkdir -p $(CLASSDIR)
 	$(JC) $(JFLAGS) -d $(CLASSDIR) $<
 
+exec: all
+	java $(CLASSDIR) WeatherApp
+
 clean:
 	rm -rf $(CLASSDIR)
 

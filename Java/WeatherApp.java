@@ -3,16 +3,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-// import java.util.Scanner;
+import java.util.Scanner;
 
 public class WeatherApp {
-    public static int[] lon = { -90, 90 }; 
-    public static int[] lat = { -180, 180 };
-    private static final String API_KEY = "88d490434002726d5241f8845d848de3";
-    private static final String API_URL = "https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
+    private static Scanner scanner = new Scanner(System.in);
+    private static final String API_KEY = "898f57194620afa1b7063fe0cff00c6b";
+    private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q=Brockport&limit=5&appid=898f57194620afa1b7063fe0cff00c6b";
 
     public static void main(String[] args) {
-        String city = "London";
+        String city = "Brockport";
         try {
             String weatherData = getWeatherData(city);
             System.out.println("Weather in " + city + ":");
