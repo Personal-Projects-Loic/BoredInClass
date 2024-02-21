@@ -1,6 +1,6 @@
 JC = javac
 JFLAGS = -g
-SOURCES = ToDoList.java test.java
+SOURCES = ToDoList.java test.java WeatherApp.java
 CLASSDIR = bin
 CLASSES = $(SOURCES:.java=.class)
 
