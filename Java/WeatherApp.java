@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -7,17 +9,36 @@ import java.util.Scanner;
 
 public class WeatherApp {
     private static Scanner scanner = new Scanner(System.in);
-    private static final String API_KEY = "api-key";
-    private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=5&appid={API_KEY}";
+    private static final String API_KEY = "api-key-here";
+    private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q=%s&limit=5&appid=%s";
 
     public static void main(String[] args) {
-        String city = "city";
+        System.out.println("Weather Application");
+        System.out.print("Enter city name: ");
+        String city = scanner.nextLine();
         try {
             String weatherData = getWeatherData(city);
             System.out.println("Weather in " + city + ":");
             System.out.println(weatherData);
         } catch (IOException e) {
             System.out.println("Error fetching weather data: " + e.getMessage());
+        }
+    }
+
+    public static void writeData(String data) throws IOException {
+        BufferedWriter out = null;
+    
+        try {
+            FileWriter fstream = new FileWriter("out.txt", true);
+            out = new BufferedWriter(fstream);
+            out.write("\n" + data);
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+            throw e;
+        } finally {
+            if (out != null) {
+                out.close();
+            }
         }
     }
 
@@ -35,7 +56,13 @@ public class WeatherApp {
             response.append(line);
         }
         reader.close();
-
+    
+        try {
+            writeData(response.toString());
+        } catch (IOException e) {
+            System.err.println("Error writing data to file: " + e.getMessage());
+        }
+    
         return response.toString();
     }
 }
