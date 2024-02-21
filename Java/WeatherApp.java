@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class WeatherApp {
     private static Scanner scanner = new Scanner(System.in);
-    private static final String API_KEY = "898f57194620afa1b7063fe0cff00c6b";
-    private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q=Brockport&limit=5&appid=898f57194620afa1b7063fe0cff00c6b";
+    private static final String API_KEY = "api-key";
+    private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=5&appid={API_KEY}";
 
     public static void main(String[] args) {
-        String city = "Brockport";
+        String city = "city";
         try {
             String weatherData = getWeatherData(city);
             System.out.println("Weather in " + city + ":");
@@ -23,6 +23,7 @@ public class WeatherApp {
 
     private static String getWeatherData(String city) throws IOException {
         String apiUrl = String.format(API_URL, city, API_KEY);
+        System.out.println(apiUrl);
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");

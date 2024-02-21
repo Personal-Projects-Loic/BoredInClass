@@ -10,6 +10,5 @@ make && cd bin && java ToDoList
 make && cd bin && java WeatherApp && cd ..
 ```
 
-
 - The test file is only a basic calculator program
 
