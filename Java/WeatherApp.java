@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class WeatherApp {
     private static Scanner scanner = new Scanner(System.in);
-    private static final String API_KEY = "api-key-here";
+    private static final String API_KEY = "898f57194620afa1b7063fe0cff00c6b";
     private static final String API_URL = "http://api.openweathermap.org/geo/1.0/direct?q=%s&limit=5&appid=%s";
 
     public static void main(String[] args) {
