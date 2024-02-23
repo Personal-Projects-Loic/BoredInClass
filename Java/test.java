@@ -1,5 +1,6 @@
-public class test {
 
+
+public class test {
     public static float calc(String calc, Float a, Float b) {
         if (calc.equals("add")) {
             return a + b;
@@ -28,12 +29,11 @@ public class test {
         return "true";
     }
 
-    public static Float binaryToDec(String str) {
+    public static Float baseToDec(String str, int base) {
         float result = 0;
-        int base = 1;
         int length = str.length();
 
-        if (isBinary(str) == "false") {
+        if (isBinary(str).equals("false")) {
             System.err.println("Error: Not a binary number");
             return 0.0f;
         }
@@ -42,25 +42,33 @@ public class test {
             result += digit * base;
             base *= 2;
         }
+        System.out.println("Decimal value is : " + result);
         return result;
     }
 
     public static void main(String[] args) {
-        String operation = args[0];
-
-        if (args.length != 3) {
-            System.out.println("Usage: java test <operation> <operand1> <operand2>");
+        if (args.length != 4) {
+            System.out.println("Usage: java Test <operation> <base> <operand1> <operand2>");
             return;
         }
 
-        if (isBinary(args[1]) == "true" && isBinary(args[2]) == "true") {
-            System.out.println(args[1] + " + " + args[2] + " = " + (calc(operation, binaryToDec(args[1]), binaryToDec(args[2]))));
+        String operation = args[0];
+        int base = 0;
+
+        try {
+            base = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            System.err.println("Error: Base is not an integer");
+            return;
+        }
+
+        if (isBinary(args[2]).equals("true") && isBinary(args[3]).equals("true")) {
+            System.out.println(args[2] + " + " + args[3] + " = " + (calc(operation, baseToDec(args[2], base), baseToDec(args[3], base))));
         } else {
-            Float operand1 = Float.parseFloat(args[1]);
-            Float operand2 = Float.parseFloat(args[2]);
+            Float operand1 = Float.parseFloat(args[2]);
+            Float operand2 = Float.parseFloat(args[3]);
             System.out.print("Result is : ");
             System.out.println(calc(operation, operand1, operand2));
         }
-
     }
 }
