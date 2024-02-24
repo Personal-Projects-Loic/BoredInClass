@@ -1,6 +1,6 @@
 
 
-public class test {
+public class miniBistro {
     public static float calc(String calc, Float a, Float b) {
         if (calc.equals("add")) {
             return a + b;
