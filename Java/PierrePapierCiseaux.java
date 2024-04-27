@@ -1,5 +1,5 @@
 /*
- * Coded with MAHE BEAUD AND LOïC ROUZAUD
+ * LOïC ROUZAUD
  */
 
 import java.util.Random;
